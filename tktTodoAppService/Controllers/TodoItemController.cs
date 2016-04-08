@@ -41,7 +41,7 @@ namespace tktTodoAppService.Controllers
         // POST tables/TodoItem
         public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
         {
-            TodoItem current = await InsertAsync(item);
+            TodoItem current = item;// await InsertAsync(item);
             // Get the settings for the server project.
             HttpConfiguration config = this.Configuration;
             MobileAppSettingsDictionary settings =
@@ -76,7 +76,7 @@ namespace tktTodoAppService.Controllers
                     .Error(ex.Message, null, "Push.SendAsync Error");
             }
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
-        }
+        } 
 
         // DELETE tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task DeleteTodoItem(string id)
